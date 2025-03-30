@@ -104,12 +104,6 @@ const createDeviceHeaders = (deviceId: string): ApiHeaders => ({
   "x-device": deviceId
 });
 
-const initializeApi = async (headers: ApiHeaders): Promise<void> => {
-  await retryOn503(() => 
-    axios.get('https://webapi.burgerking.fr/blossom/api/v13/public/app/initialize', { headers })
-  );
-};
-
 const fetchOperations = async (data: ApiData, headers: ApiHeaders): Promise<Operation[]> => {
   const response: AxiosResponse = await retryOn503(() =>
     axios.post(
@@ -174,7 +168,6 @@ export const generateCodes = async (firstChoice: BurgerChoice | null = null): Pr
       queen: await Captcha.resolve()
     };
 
-    await initializeApi(headers);
     const operations: Operation[] = await fetchOperations(data, headers);
     const restaurantCodes: string[] = await getRestaurantCodes(operations);
 
