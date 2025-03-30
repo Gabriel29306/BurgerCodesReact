@@ -21,7 +21,6 @@ export default function TabTwoScreen() {
 
   const fetchQrcodes = async () => {
     const storedQrcodes = await AsyncStorage.getItem('qrcodes');
-    console.log(storedQrcodes);
     if (storedQrcodes) {
       setQrcodes(JSON.parse(storedQrcodes));
     }

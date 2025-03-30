@@ -89,7 +89,6 @@ const retryOn503 = async <T>(requestFn: () => Promise<T>, maxRetries: number = M
       else {
         if (error.response?.status !== 503 && error.response?.status !== 500) throw error;
       }
-      console.log(`MYSTERY BURGER - HTTP 503 • Retry ${attempt}/${maxRetries}`);
       await new Promise(resolve => setTimeout(resolve, delay));
     }
   }
