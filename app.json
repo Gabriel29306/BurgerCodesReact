@@ -1,28 +1,23 @@
 {
   "expo": {
-    "name": "burger-king-mystery",
+    "name": "Burger King",
     "slug": "burger-king-mystery",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "burger-king-mystery",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.burgerkingmystery"
+      "supportsTablet": false,
+      "bundleIdentifier": "bzh.gabriel29.burgerkingmystery"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.burgerkingmystery"
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "package": "bzh.gabriel29.burgerkingmystery"
     },
     "plugins": [
       "expo-router",
