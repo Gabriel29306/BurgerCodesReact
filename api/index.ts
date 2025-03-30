@@ -1,7 +1,7 @@
 /* 
 Thanks to Orafilynie for the original code !
 
-https://github.com/Orafilynie/BurgerCodeGen/
+https://github.com/Orafilynie/Old-BurgerCodeGen/
 */
 
 import Captcha from "./captcha";
@@ -31,7 +31,6 @@ interface ApiHeaders  {
   "Accept": string;
   "x-application": string;
   "x-version": string;
-  "Accept-Language": string;
   "User-Agent": string;
   "Connection": string;
   "x-platform": string;
@@ -70,9 +69,8 @@ const API_HEADERS: ApiHeaders = {
   "Host": "webapi.burgerking.fr",
   "Accept": "application/json, text/plain, */*",
   "x-application": "WEBSITE",
-  "x-version": "10.19.0",
-  "Accept-Language": "fr-FR,fr;q=0.9",
-  "User-Agent": "Mobile/1639457264 CFNetwork/3826.400.120 Darwin/24.3.0",
+  "x-version": "10.23.0",
+  "User-Agent": "com.unit9.bkFrApp/10.23.0",
   "Connection": "keep-alive",
   "x-platform": "APP_IOS",
   "Content-Type": "application/json"
@@ -104,12 +102,6 @@ const createDeviceHeaders = (deviceId: string): ApiHeaders => ({
   ...API_HEADERS,
   "x-device": deviceId
 });
-
-const initializeApi = async (headers: ApiHeaders): Promise<void> => {
-  await retryOn503(() => 
-    axios.get('https://webapi.burgerking.fr/blossom/api/v13/public/app/initialize', { headers })
-  );
-};
 
 const fetchOperations = async (data: ApiData, headers: ApiHeaders): Promise<Operation[]> => {
   const response: AxiosResponse = await retryOn503(() =>
@@ -175,7 +167,6 @@ export const generateCodes = async (firstChoice: BurgerChoice | null = null): Pr
       queen: await Captcha.resolve()
     };
 
-    await initializeApi(headers);
     const operations: Operation[] = await fetchOperations(data, headers);
     const restaurantCodes: string[] = await getRestaurantCodes(operations);
 
