@@ -67,6 +67,7 @@ export default function GenerateScreen() {
         } else {
           setErrorMessage("Une erreur est survenue:\n" + error);
         }
+        setLoading(false);
         return;
       }
     }
